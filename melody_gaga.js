@@ -1,4 +1,4 @@
-// melody_gaga.js - Lady Gaga主題網頁互動功能
+// melody_gaga.js - Lady Gaga主題網頁互動功能only tony&melody can use
 
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🎵 Lady Gaga主題網頁已載入');
