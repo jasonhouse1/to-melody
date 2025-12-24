@@ -1,0 +1,1671 @@
+/* 
+============================================
+melody_gaga.css - Lady Gaga「一個巨星的誕生」主題樣式
+完整版本 - 包含所有樣式
+============================================
+*/
+
+/* 基礎重置與變數定義 */
+:root {
+    /* 電影感色調 */
+    --gaga-blue: #0a1a2d;
+    --gaga-dark-blue: #051422;
+    --gaga-gold: #d4af37;
+    --gaga-light-gold: #f4e8c1;
+    --gaga-red: #b22222;
+    --gaga-dark-red: #8b0000;
+    --gaga-purple: #4b0082;
+    --gaga-light-purple: #7b3fa3;
+    --gaga-silver: #c0c0c0;
+    --gaga-light-silver: #e8e8e8;
+    --gaga-black: #000000;
+    
+    /* 漸層 */
+    --gradient-stage: linear-gradient(135deg, var(--gaga-purple) 0%, var(--gaga-blue) 50%, var(--gaga-black) 100%);
+    --gradient-gold: linear-gradient(to right, var(--gaga-gold), var(--gaga-light-gold));
+    --gradient-red: linear-gradient(to right, var(--gaga-red), var(--gaga-dark-red));
+    
+    /* 陰影 */
+    --shadow-glow: 0 0 20px rgba(212, 175, 55, 0.5);
+    --shadow-heavy: 0 10px 30px rgba(0, 0, 0, 0.7);
+    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.3);
+    
+    /* 動畫速度 */
+    --transition-slow: 0.5s ease;
+    --transition-medium: 0.3s ease;
+    --transition-fast: 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 星星背景效果 */
+.star-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(178, 34, 34, 0.1) 0%, transparent 50%),
+        linear-gradient(to bottom, var(--gaga-dark-blue), var(--gaga-black));
+    z-index: -2;
+}
+
+.star-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, var(--gaga-light-silver), transparent),
+        radial-gradient(2px 2px at 40px 70px, var(--gaga-gold), transparent),
+        radial-gradient(1px 1px at 90px 40px, var(--gaga-silver), transparent),
+        radial-gradient(1px 1px at 130px 80px, var(--gaga-light-gold), transparent);
+    background-repeat: repeat;
+    animation: starsMove 100s linear infinite;
+}
+
+@keyframes starsMove {
+    from { transform: translateY(0); }
+    to { transform: translateY(-1000px); }
+}
+
+/* 基礎樣式 */
+body {
+    font-family: 'Noto Sans TC', 'Segoe UI', sans-serif;
+    line-height: 1.7;
+    color: var(--gaga-light-silver);
+    background-color: var(--gaga-black);
+    padding: 20px;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.container {
+    background: rgba(10, 26, 45, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 
+        var(--shadow-heavy),
+        inset 0 0 0 1px rgba(212, 175, 55, 0.2);
+    overflow: hidden;
+    padding: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+/* 標頭樣式 */
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 30px;
+    border-radius: 15px;
+    background: var(--gradient-stage);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--gaga-gold);
+    box-shadow: var(--shadow-glow);
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(212, 175, 55, 0.2),
+        transparent
+    );
+    animation: spotlight 3s infinite;
+}
+
+@keyframes spotlight {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.header-content {
+    position: relative;
+    z-index: 2;
+}
+
+.title-glow {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    color: var(--gaga-light-gold);
+    text-shadow: 
+        0 0 10px var(--gaga-gold),
+        0 0 20px var(--gaga-gold),
+        0 0 30px var(--gaga-red),
+        0 0 40px rgba(178, 34, 34, 0.5);
+    animation: titlePulse 3s ease-in-out infinite;
+}
+
+@keyframes titlePulse {
+    0%, 100% { 
+        text-shadow: 
+            0 0 10px var(--gaga-gold),
+            0 0 20px var(--gaga-gold);
+    }
+    50% { 
+        text-shadow: 
+            0 0 20px var(--gaga-gold),
+            0 0 30px var(--gaga-red),
+            0 0 40px rgba(178, 34, 34, 0.7);
+    }
+}
+
+.title-main {
+    display: block;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.title-sub {
+    display: block;
+    font-size: 0.6em;
+    font-weight: 300;
+    color: var(--gaga-silver);
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+.header .fa-star {
+    color: var(--gaga-gold);
+    margin-right: 15px;
+    font-size: 2.5rem;
+    vertical-align: middle;
+    animation: starSpin 4s linear infinite;
+}
+
+@keyframes starSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--gaga-light-silver);
+    margin-bottom: 25px;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* 音樂條動畫 */
+.music-bar {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 40px;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.music-bar .bar {
+    width: 8px;
+    background: var(--gradient-gold);
+    border-radius: 4px 4px 0 0;
+    animation: musicPulse 1.5s infinite ease-in-out;
+}
+
+.music-bar .bar:nth-child(1) { 
+    height: 10px; 
+    animation-delay: 0s; 
+}
+.music-bar .bar:nth-child(2) { 
+    height: 20px; 
+    animation-delay: 0.2s; 
+}
+.music-bar .bar:nth-child(3) { 
+    height: 30px; 
+    animation-delay: 0.4s; 
+}
+.music-bar .bar:nth-child(4) { 
+    height: 20px; 
+    animation-delay: 0.6s; 
+}
+.music-bar .bar:nth-child(5) { 
+    height: 10px; 
+    animation-delay: 0.8s; 
+}
+
+@keyframes musicPulse {
+    0%, 100% { 
+        transform: scaleY(1);
+        opacity: 0.7;
+    }
+    50% { 
+        transform: scaleY(1.5);
+        opacity: 1;
+    }
+}
+
+/* 區域標題樣式 */
+.section-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid var(--gaga-gold);
+    position: relative;
+}
+
+.section-header::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    background: var(--gradient-gold);
+}
+
+.section-header h2 {
+    color: var(--gaga-light-gold);
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.section-header .fa-film,
+.section-header .fa-user-astronaut,
+.section-header .fa-music {
+    color: var(--gaga-gold);
+    font-size: 1.8rem;
+}
+
+.section-subtitle {
+    color: var(--gaga-silver);
+    font-size: 1.1rem;
+    margin-top: 10px;
+    font-weight: 300;
+    padding-left: 45px;
+}
+
+/* 主要圖片容器 */
+.main-image-container {
+    margin-bottom: 40px;
+    border-radius: 15px;
+    overflow: hidden;
+    height: 400px;
+    position: relative;
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--gaga-gold);
+}
+
+.feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.feature-image:hover {
+    transform: scale(1.05);
+}
+
+/* 圖片佔位符樣式 */
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 26, 45, 0.9), rgba(75, 0, 130, 0.7));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--gaga-light-silver);
+    border: 2px dashed var(--gaga-gold);
+    transition: all var(--transition-medium);
+}
+
+.image-placeholder:hover {
+    background: linear-gradient(135deg, rgba(10, 26, 45, 0.95), rgba(75, 0, 130, 0.8));
+    border-color: var(--gaga-light-gold);
+}
+
+.image-placeholder i {
+    font-size: 4rem;
+    color: var(--gaga-gold);
+    margin-bottom: 20px;
+}
+
+.image-placeholder p {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.image-instruction {
+    font-size: 0.9rem;
+    color: var(--gaga-silver);
+    text-align: center;
+    line-height: 1.4;
+    max-width: 300px;
+    padding: 0 20px;
+}
+
+.image-placeholder.small {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, var(--gaga-purple), var(--gaga-blue));
+}
+
+.image-placeholder.small i {
+    font-size: 3rem;
+    margin-bottom: 0;
+}
+
+/* 主題內容區 */
+.theme-content {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+/* AI協作說明 */
+.ai-note {
+    background: rgba(212, 175, 55, 0.1);
+    border: 1px solid var(--gaga-gold);
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(5px);
+}
+
+.ai-note h4 {
+    color: var(--gaga-light-gold);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.ai-note p {
+    color: var(--gaga-light-silver);
+    line-height: 1.8;
+}
+
+/* 電影介紹 */
+.movie-intro h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.content-box {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    padding: 30px;
+    border-left: 4px solid var(--gaga-red);
+}
+
+.content-box p {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--gaga-light-silver);
+}
+
+/* 對比卡片 */
+.comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+}
+
+.compare-card {
+    background: rgba(10, 26, 45, 0.7);
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid var(--gaga-purple);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.compare-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(75, 0, 130, 0.3);
+    border-color: var(--gaga-light-purple);
+}
+
+.compare-card h4 {
+    color: var(--gaga-light-gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+}
+
+.compare-card ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.compare-card li {
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--gaga-light-silver);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.compare-card li:before {
+    content: '🎵';
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+.compare-card li:last-child {
+    border-bottom: none;
+}
+
+/* 經典場景區 */
+.scenes-section h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.scene-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+@media (max-width: 768px) {
+    .scene-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.scene-image {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    border: 2px solid var(--gaga-gold);
+}
+
+.scene-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scene-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.scene-text h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.scene-text p {
+    color: var(--gaga-light-silver);
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+.achievements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.award {
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gaga-light-gold);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+}
+
+.award i {
+    color: var(--gaga-gold);
+}
+
+/* 音樂分析區 */
+.music-analysis h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.music-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .music-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.song-card {
+    background: rgba(10, 26, 45, 0.8);
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    border: 1px solid var(--gaga-purple);
+    transition: transform var(--transition-medium);
+}
+
+.song-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gaga-light-purple);
+}
+
+.album-cover {
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 3px solid var(--gaga-gold);
+    flex-shrink: 0;
+}
+
+.album-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-info h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.song-desc {
+    color: var(--gaga-light-silver);
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.song-stats {
+    display: flex;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+.song-stats span {
+    color: var(--gaga-silver);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.song-stats i {
+    color: var(--gaga-gold);
+}
+
+.song-list {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.song-list h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gaga-gold);
+}
+
+.song-list ul {
+    list-style: none;
+}
+
+.song-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+    color: var(--gaga-light-silver);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.song-list li:last-child {
+    border-bottom: none;
+}
+
+.song-list li strong {
+    color: var(--gaga-light-gold);
+    font-weight: 500;
+}
+
+/* 時尚風格區 */
+.fashion-section h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Playfair Display', serif;
+}
+
+.fashion-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+@media (max-width: 768px) {
+    .fashion-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.fashion-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.fashion-text p {
+    color: var(--gaga-light-silver);
+    margin-bottom: 25px;
+    line-height: 1.7;
+    font-size: 1.1rem;
+}
+
+.style-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.style-card {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transition: transform var(--transition-medium);
+}
+
+.style-card:hover {
+    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.style-card i {
+    font-size: 2rem;
+    color: var(--gaga-gold);
+    margin-bottom: 10px;
+}
+
+.style-card h5 {
+    color: var(--gaga-light-gold);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.style-card p {
+    color: var(--gaga-silver);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+    line-height: 1.4;
+}
+
+.fashion-image {
+    border-radius: 10px;
+    overflow: hidden;
+    height: 300px;
+    border: 2px solid var(--gaga-gold);
+}
+
+.fashion-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 自我介紹區 */
+.intro-content {
+    margin-top: 30px;
+}
+
+.profile-container {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 40px;
+}
+
+@media (max-width: 992px) {
+    .profile-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.avatar-section {
+    background: rgba(10, 26, 45, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid var(--gaga-gold);
+    position: sticky;
+    top: 30px;
+    height: fit-content;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--gaga-gold);
+    margin-bottom: 20px;
+    box-shadow: var(--shadow-glow);
+}
+
+.avatar-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px dashed var(--gaga-gold);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    background: rgba(212, 175, 55, 0.1);
+    transition: all var(--transition-medium);
+}
+
+.avatar-placeholder:hover {
+    background: rgba(212, 175, 55, 0.15);
+    border-color: var(--gaga-light-gold);
+}
+
+.avatar-placeholder i {
+    font-size: 4rem;
+    color: var(--gaga-gold);
+    margin-bottom: 15px;
+}
+
+.avatar-info h3 {
+    color: var(--gaga-light-gold);
+    font-size: 2rem;
+    margin-bottom: 10px;
+    font-family: 'Playfair Display', serif;
+}
+
+.tagline {
+    color: var(--gaga-silver);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.social-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-tag {
+    background: rgba(75, 0, 130, 0.3);
+    color: var(--gaga-light-silver);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    border: 1px solid rgba(75, 0, 130, 0.5);
+}
+
+.social-tag i {
+    color: var(--gaga-gold);
+}
+
+/* 資訊卡片 */
+.info-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    padding: 30px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    transition: transform var(--transition-medium);
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(212, 175, 55, 0.4);
+}
+
+.info-card h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--gaga-gold);
+}
+
+.info-card ul {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.info-card li {
+    padding: 10px 0;
+    padding-left: 25px;
+    position: relative;
+    color: var(--gaga-light-silver);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.info-card li:before {
+    content: '✨';
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+
+.info-card li strong {
+    color: var(--gaga-light-gold);
+    font-weight: 500;
+}
+
+.info-card li:last-child {
+    border-bottom: none;
+}
+
+/* 技能網格 */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 15px;
+}
+
+.skill-group h5 {
+    color: var(--gaga-gold);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-tag {
+    background: rgba(75, 0, 130, 0.3);
+    color: var(--gaga-light-silver);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(75, 0, 130, 0.5);
+    transition: all var(--transition-medium);
+}
+
+.skill-tag:hover {
+    background: rgba(75, 0, 130, 0.4);
+    transform: scale(1.05);
+    border-color: var(--gaga-light-purple);
+}
+
+/* 原因卡片 */
+.reasons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.reason {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    transition: transform var(--transition-medium);
+}
+
+.reason:hover {
+    transform: translateY(-5px);
+    background: rgba(212, 175, 55, 0.15);
+}
+
+.reason i {
+    font-size: 2rem;
+    color: var(--gaga-gold);
+    margin-bottom: 15px;
+}
+
+.reason p {
+    color: var(--gaga-light-silver);
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+/* 專案特色 */
+.project-features {
+    list-style: none;
+    padding-left: 0;
+}
+
+.project-features li {
+    padding: 12px 0;
+    padding-left: 35px;
+    position: relative;
+    color: var(--gaga-light-silver);
+    border-bottom: 1px solid rgba(192, 192, 192, 0.1);
+}
+
+.project-features li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 12px;
+    color: var(--gaga-gold);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.project-features li:last-child {
+    border-bottom: none;
+}
+
+/* ============================================
+   音樂播放器樣式
+   ============================================ */
+
+/* 音樂區段標題 */
+.music-section .section-header {
+    margin-top: 50px;
+}
+
+/* 音樂播放器容器 */
+.music-player {
+    background: linear-gradient(135deg, rgba(10, 26, 45, 0.95), rgba(75, 0, 130, 0.85));
+    border-radius: 20px;
+    padding: 40px;
+    border: 3px solid var(--gaga-gold);
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.6),
+        inset 0 0 20px rgba(212, 175, 55, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.music-player::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(178, 34, 34, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* YouTube影片容器 */
+.video-container {
+    margin-bottom: 40px;
+}
+
+.video-container h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.video-container h3 i {
+    color: #FF0000;
+    font-size: 2rem;
+}
+
+.youtube-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 比例 */
+    height: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 3px solid var(--gaga-gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.youtube-embed:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.7),
+        0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.youtube-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-description {
+    color: var(--gaga-light-silver);
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 10px;
+    border-left: 4px solid var(--gaga-gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.video-description i {
+    color: var(--gaga-gold);
+    font-size: 1.3rem;
+}
+
+/* 串流平台樣式 */
+.streaming-platforms {
+    margin-bottom: 40px;
+}
+
+.streaming-platforms h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.platform-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+.platform-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all var(--transition-medium);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.platform-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.platform-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gaga-gold);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.platform-card:hover::before {
+    transform: translateX(100%);
+}
+
+.platform-card.youtube {
+    border-left: 5px solid #FF0000;
+}
+
+.platform-card.spotify {
+    border-left: 5px solid #1DB954;
+}
+
+.platform-card.apple {
+    border-left: 5px solid #FA243C;
+}
+
+.platform-card.youtube-movie {
+    border-left: 5px solid var(--gaga-purple);
+}
+
+.platform-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.platform-card.youtube .platform-icon {
+    background: rgba(255, 0, 0, 0.1);
+    color: #FF0000;
+}
+
+.platform-card.spotify .platform-icon {
+    background: rgba(29, 185, 84, 0.1);
+    color: #1DB954;
+}
+
+.platform-card.apple .platform-icon {
+    background: rgba(250, 36, 60, 0.1);
+    color: #FA243C;
+}
+
+.platform-card.youtube-movie .platform-icon {
+    background: rgba(75, 0, 130, 0.1);
+    color: var(--gaga-light-purple);
+}
+
+.platform-info {
+    flex: 1;
+}
+
+.platform-info h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+    font-family: 'Playfair Display', serif;
+}
+
+.platform-info p {
+    color: var(--gaga-silver);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.platform-stats {
+    display: inline-block;
+    background: rgba(212, 175, 55, 0.2);
+    color: var(--gaga-light-gold);
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* 原聲帶曲目列表 */
+.soundtrack-list {
+    margin-bottom: 30px;
+}
+
+.soundtrack-list h3 {
+    color: var(--gaga-light-gold);
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Playfair Display', serif;
+}
+
+.tracks-grid {
+    background: rgba(10, 26, 45, 0.5);
+    border-radius: 15px;
+    padding: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.track-item {
+    display: flex;
+    align-items: center;
+    padding: 18px 20px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: all var(--transition-medium);
+    border: 1px solid transparent;
+}
+
+.track-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+    transform: translateX(5px);
+}
+
+.track-number {
+    color: var(--gaga-gold);
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+}
+
+.track-details {
+    flex: 1;
+}
+
+.track-details h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.track-details p {
+    color: var(--gaga-silver);
+    font-size: 0.95rem;
+}
+
+.track-play {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--gaga-gold), var(--gaga-red));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all var(--transition-medium);
+    border: 2px solid var(--gaga-gold);
+}
+
+.track-play:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+}
+
+.track-play i {
+    font-size: 1.2rem;
+    margin-left: 2px;
+}
+
+/* 音樂說明 */
+.music-note {
+    background: rgba(178, 34, 34, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(178, 34, 34, 0.3);
+    color: var(--gaga-light-silver);
+    font-size: 1rem;
+}
+
+.music-note i {
+    color: var(--gaga-red);
+    margin-right: 10px;
+}
+
+/* 頁尾樣式 */
+.footer {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 2px solid var(--gaga-gold);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section {
+    background: rgba(10, 26, 45, 0.5);
+    border-radius: 10px;
+    padding: 25px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.footer-section h4 {
+    color: var(--gaga-light-gold);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-section p {
+    color: var(--gaga-light-silver);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.file-list code {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--gaga-light-gold);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid rgba(212, 175, 55, 0.2);
+    color: var(--gaga-silver);
+    font-size: 0.9rem;
+}
+
+.ai-credit {
+    color: var(--gaga-gold);
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.95rem;
+}
+
+/* 背景音樂控制 */
+.background-music {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.music-toggle {
+    background: rgba(10, 26, 45, 0.9);
+    border-radius: 25px;
+    padding: 10px 20px;
+    border: 2px solid var(--gaga-gold);
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+}
+
+.music-toggle input {
+    display: none;
+}
+
+.music-toggle label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    color: var(--gaga-light-gold);
+    font-weight: 500;
+}
+
+.music-toggle i {
+    font-size: 1.3rem;
+    color: var(--gaga-gold);
+}
+
+.toggle-switch {
+    width: 50px;
+    height: 26px;
+    background: rgba(212, 175, 55, 0.3);
+    border-radius: 13px;
+    position: relative;
+    transition: background var(--transition-medium);
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background: var(--gaga-gold);
+    border-radius: 50%;
+    transition: transform var(--transition-medium);
+}
+
+#bgMusicToggle:checked + label .toggle-switch {
+    background: rgba(75, 0, 130, 0.5);
+}
+
+#bgMusicToggle:checked + label .toggle-switch::after {
+    transform: translateX(24px);
+    background: var(--gaga-light-purple);
+}
+
+/* 響應式設計 */
+@media (max-width: 992px) {
+    .platform-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .title-glow {
+        font-size: 2rem;
+    }
+    
+    .main-image-container {
+        height: 250px;
+    }
+    
+    .section-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .scene-image,
+    .fashion-image {
+        height: 200px;
+    }
+    
+    .platform-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .video-container h3,
+    .streaming-platforms h3,
+    .soundtrack-list h3 {
+        font-size: 1.5rem;
+    }
+    
+    .track-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .track-play {
+        align-self: flex-end;
+    }
+    
+    .music-player {
+        padding: 25px;
+    }
+    
+    .background-music {
+        bottom: 15px;
+        left: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .music-player {
+        padding: 20px;
+    }
+    
+    .youtube-embed {
+        border-radius: 8px;
+    }
+    
+    .platform-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .platform-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+}
+
+/* 列印樣式 */
+@media print {
+    .star-background,
+    .background-music,
+    .music-bar {
+        display: none;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* 滾動動畫效果 */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 音樂提示框動畫 */
+@keyframes slideIn {
+    from { 
+        transform: translateX(-100%); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+}
+
+@keyframes slideOut {
+    from { 
+        transform: translateX(0); 
+        opacity: 1; 
+    }
+    to { 
+        transform: translateX(-100%); 
+        opacity: 0; 
+    }
+}
+
+/* 頁面載入動畫 */
+@keyframes headerReveal {
+    from { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.page-loaded .header {
+    animation: headerReveal 1s ease;
+}
